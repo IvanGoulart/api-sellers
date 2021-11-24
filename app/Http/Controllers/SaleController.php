@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Seller;
-use App\Models\SellerAmounts;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class SellerServer extends Controller
+class SaleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +13,7 @@ class SellerServer extends Controller
      */
     public function index()
     {
-
-        $sellers = Seller::all();
-
-        // $sellerAmount = Seller::with('amounts')->get();
-
-        return response()->json($sellers);
-
+        //
     }
 
     /**
@@ -43,23 +34,7 @@ class SellerServer extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $seller = new Seller;
-            $seller->name = $request->input('name');
-            $seller->email = $request->input('email');
-            $seller->save();
-
-        } catch (\Exception $e) {
-
-            $return = [
-                "messages" => [
-                    "code" => "422",
-                    "message" => $e->getMessage(),
-                ]
-            ];
-            // Retorna a mensagem
-            return response()->json($return);
-        }
+        //
     }
 
     /**

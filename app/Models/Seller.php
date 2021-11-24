@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Sales;
+
 
 class Seller extends Model
 {
@@ -12,6 +14,6 @@ class Seller extends Model
 
     public function sales()
     {
-        return $this->hasMany(SellerAmounts::class);
+        return $this->hasMany(Sale::class);
     }
 }
