@@ -44,11 +44,10 @@ class SellerServer extends Controller
      */
     public function store(Request $request)
     {
-
         try {
             $seller = new Seller;
-            $seller->name = $request->name;
-            $seller->email = $request->email;
+            $seller->name = $request->input('name');
+            $seller->email = $request->input('email');
             $seller->save();
 
         } catch (\Exception $e) {

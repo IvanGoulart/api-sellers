@@ -66,6 +66,7 @@ class SalesServer extends Controller
      */
     public function show($id)
     {
+
         $salesSeller = Seller::with('sales')->find($id);
 
         return response()->json($salesSeller);
