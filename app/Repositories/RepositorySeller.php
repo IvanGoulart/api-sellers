@@ -14,7 +14,9 @@ class RepositorySeller implements RepositorySellerInterface
 
     public function all()
     {
-        return $this->model->all();
+
+        $salesSeller = $this->model->with('sales')->get();
+        return $salesSeller;
     }
 
     public function create(array $data)
