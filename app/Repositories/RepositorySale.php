@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\Sale;
+use Illuminate\Database\Eloquent\Model;
 
 class RepositorySale implements RepositorySaleInterface
 {
@@ -9,7 +10,7 @@ class RepositorySale implements RepositorySaleInterface
     protected $model;
 
     // Constutor para vincular o modelo
-    public function __construct(Sale $model)
+    public function __construct(Model $model)
     {
         $this->model = $model;
     }
