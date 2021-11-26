@@ -43,6 +43,7 @@ class SalesServer extends Controller
             $sale->seller_id = $request->seller_id;
             $sale->amount  = $request->amount;
             $sale->dt_sale  = $request->dt_sale;
+            $sale->total_amount = $request->amount + ($sale->amount * 0.085);
 
             $sale->save();
 
