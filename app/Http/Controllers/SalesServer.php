@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
-use App\Models\Seller;
+use App\Repositories\RepositorySale;
 use Illuminate\Http\Request;
 
 class SalesServer extends Controller
 {
+        // space that we can use the repository from
+        protected $model;
+
+        public function __construct(Sale $sale)
+        {
+        // set the model
+        $this->model = new RepositorySale($sale);
+        }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,27 +46,9 @@ class SalesServer extends Controller
     public function store(Request $request)
     {
 
-        try {
-            $sale = new Sale;
+        $request['total_amount'] = $request->amount + ($request->amount * 0.085);
 
-            $sale->seller_id = $request->seller_id;
-            $sale->amount  = $request->amount;
-            $sale->dt_sale  = $request->dt_sale;
-            $sale->total_amount = $request->amount + ($sale->amount * 0.085);
-
-            $sale->save();
-
-        } catch (\Exception $e) {
-            $return = [
-                "messages" => [
-                    "code" => "422",
-                    "message" => $e->getMessage(),
-                ]
-            ];
-            // Retorna a mensagem
-            return response()->json($return);
-        }
-
+        return $this->model->create($request->all());
     }
 
     /**
@@ -69,9 +60,6 @@ class SalesServer extends Controller
     public function show($id)
     {
 
-        $salesSeller = Seller::with('sales')->find($id);
-
-        return response()->json($salesSeller);
     }
 
     /**

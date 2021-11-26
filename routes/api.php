@@ -12,6 +12,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('seller')->group(function () {
     Route::post('/create', [SellerServer::class, 'store']);
     Route::get('/', [SellerServer::class, 'index']);
+    Route::get('/show/{id}', [SellerServer::class, 'show']);
 });
 
 Route::prefix('sale')->group(function () {

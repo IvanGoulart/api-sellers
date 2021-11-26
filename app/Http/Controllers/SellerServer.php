@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Seller;
-use App\Models\SellerAmounts;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Repositories\RepositorySeller;
 
 class SellerServer extends Controller
 {
+
+    protected $model;
+
+    public function __construct(Seller $seller)
+    {
+        //Seta a model
+        $this->model = new RepositorySeller($seller);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,13 +23,7 @@ class SellerServer extends Controller
      */
     public function index()
     {
-
-        $sellers = Seller::all();
-
-        // $sellerAmount = Seller::with('amounts')->get();
-
-        return response()->json($sellers);
-
+        return $this->model->all();
     }
 
     /**
@@ -36,30 +37,15 @@ class SellerServer extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        try {
-            $seller = new Seller;
-            $seller->name = $request->input('name');
-            $seller->email = $request->input('email');
-            $seller->save();
 
-        } catch (\Exception $e) {
+        return $this->model->create($request->all());
 
-            $return = [
-                "messages" => [
-                    "code" => "422",
-                    "message" => $e->getMessage(),
-                ]
-            ];
-            // Retorna a mensagem
-            return response()->json($return);
-        }
     }
 
     /**
@@ -70,7 +56,9 @@ class SellerServer extends Controller
      */
     public function show($id)
     {
-        //
+
+        return $this->model->show($id);
+
     }
 
     /**

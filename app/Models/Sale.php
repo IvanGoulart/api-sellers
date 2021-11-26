@@ -7,11 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-    use HasFactory;
+
+     /**
+     * The attributes that are mass assignable.
+     *
+     *@var array
+     */
+    protected $fillable = [
+        'seller_id',
+        'amount',
+        'dt_sale',
+        'total_amount'
+    ];
 
 
     public function seller()
     {
-        return $this->hasMany(Seller::class);
+        return $this->belongsTo(Seller::class);
     }
 }
