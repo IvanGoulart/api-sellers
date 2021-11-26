@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MyTestMail extends Mailable
+class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class MyTestMail extends Mailable
     public function build()
     {
         return $this->subject('Valor total de vendas de: ' . $this->total->name)
-                    ->view('emails.myTestMail');
+                    ->view('emails.sendMail');
     }
 }

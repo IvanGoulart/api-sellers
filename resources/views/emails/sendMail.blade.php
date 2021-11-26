@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>{{ $total->name }}</h1>
-    <p>R$ {{number_format($total->value, 2, ',', '.')}}</p>
+    <p>Seu total de vendas em {{Carbon\Carbon::now('PST')->format('d-m-Y i')}} foi de: R$ {{number_format($total->value, 2, ',', '.')}}</p>
 
 </body>
 </html>

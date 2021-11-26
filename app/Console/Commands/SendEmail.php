@@ -53,7 +53,7 @@ class SendEmail extends Command
 
         foreach ($totalSale as $total) {
 
-            \Mail::to("$total->email")->send(new \App\Mail\MyTestMail($total));
+            \Mail::to("$total->email")->send(new \App\Mail\SendMail($total));
 
         }
     }
