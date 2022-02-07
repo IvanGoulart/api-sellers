@@ -14,7 +14,7 @@ class SalesServer extends Controller
         public function __construct(Sale $sale)
         {
         // set the model
-        $this->model = new RepositorySale($sale);
+        $this->model = $sale;
         }
 
     /**
@@ -59,7 +59,7 @@ class SalesServer extends Controller
      */
     public function show($id)
     {
-
+        dd($id);
     }
 
     /**

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Seller;
 use Illuminate\Http\Request;
-use App\Repositories\RepositorySeller;
 
 class SellerServer extends Controller
 {
@@ -13,8 +12,9 @@ class SellerServer extends Controller
 
     public function __construct(Seller $seller)
     {
-        //Seta a model
-        $this->model = new RepositorySeller($seller);
+
+        $this->model = $seller;
+
     }
     /**
      * Display a listing of the resource.
@@ -44,6 +44,7 @@ class SellerServer extends Controller
     public function store(Request $request)
     {
 
+        //return $this->model;
         return $this->model->create($request->all());
 
     }
